@@ -1,0 +1,26 @@
+     1                                  
+     2                                  %macro mymacro 2
+     3                                  	mov eax,%1
+     4                                  	mov ebx, %2
+     5                                  	add eax,ebx
+     6                                  %endmacro
+     7                                  
+     8                                  %macro mymacro 2
+     8          ******************       warning: redefining multi-line macro `mymacro' [-w+other]
+     9                                  	mov ebx, %1
+    10                                  	mov eax,%2
+    11                                  	sub eax,ebx
+    12                                  %endmacro
+    13                                  
+    14                                  section .text
+    15                                  	global main
+    16                                  	
+    17                                  main:
+    18                                  	mymacro	10,20
+    18 00000000 BB0A000000          <1>  mov ebx, %1
+    18 00000005 B814000000          <1>  mov eax,%2
+    18 0000000A 29D8                <1>  sub eax,ebx
+    19                                  
+    20                                  
+    21 0000000C C3                      	ret
+    22                                  

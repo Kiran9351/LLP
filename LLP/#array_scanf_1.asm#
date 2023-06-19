@@ -1,0 +1,30 @@
+section .data
+	input db "%d",0
+	msg db "Enter count required:",0
+	msg1 db "This is second line",10,0
+
+section .bss
+	;; resd - reserve double
+	n resd 1
+	
+
+section .text
+	global main
+	extern printf,scanf,puts
+
+main:
+	push msg
+	call printf
+	add esp,4
+
+	push n
+	push input
+	call scanf
+	add esp,8
+
+	push dword[n]
+	push msg1
+	call printf
+	add esp,8
+
+	ret

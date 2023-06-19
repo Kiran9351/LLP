@@ -1,0 +1,76 @@
+- Write a assembly program one statement/instruction per line
+
+- Each statement is either instruction or an assembler directive
+
+- Operands provide the information about the data to work with.
+
+- Assembly language program consist of 3 types of statements
+	- Executable instructions or instructions:
+		- These are instructions to tell the processor what to do.
+		- Each instruction consist of operation code i.e. opcode
+		- Each executable instruction generates one machine language instruction
+
+	- Assembler directive or pseudo-ops:
+		- tell the assembler about various aspects of the assembly process.
+		- These are non-executable
+		- Do not generate machine language instructions
+
+	- Macros:
+		-Macros are basically a text subtitution mechanism
+
+- 3 Sections are code:
+	- The data section:
+		- Used to declaring initialized data or constants
+		- This data does not change at runtime
+		- section .data
+
+	- The bss section:
+		- bss -> Block started by symbol
+		- used to declaring variables
+		- section .bss
+
+	- The text section:
+		- Used to keep actual code
+		- begin with declaration of global main
+		- section .text
+				global main
+		  main:
+
+- Comments in assembly language are begin with semicolon (;)
+
+- IA-32 Registers:
+	- IA-32 have 8 registers and have 32 bit, 16 bit and 8 bit versions
+	
+	32 bit		16 bit		  8 bit
+	EAX		AX	  	AH	AL
+	EBX		BX		BH	BL
+	ECX		CX		CH	CL
+	EDX		DX		DH	DL
+	ESI 		SI
+	EDI		DI
+	ESP		SP
+	EBP		BP
+
+	
+- Register names and their meaning:
+
+	- EAX - Accumulator register
+	- EBX - Base register
+	- ECX - Counter register
+	- EDX - Data register
+	- ESI - Source register
+	- EDI - Destination register
+	- EBP - Base pointer (frame pointer)
+	- ESP - Stack pointer
+
+- EAX : The accumulator
+
+	- mul and div instructions required one operand to be specifically in accumulator and result of multiplication stores in accumulator.
+	- EAX also contain the return value whenever an external function call is made.
+	- When used along with int 0x80 instruction, this instruction assumes that eax contains the system call number.
+	- Most of the work is performed in accumulator, all other general purpose registers apart from EAX are mostly used primarily to support the calculation occuring in the accumulator
+
+- EDX : Data register
+
+	- This register is most closely tied to the accumulator. 
+	- mul and div operation use data register to store most significant bits

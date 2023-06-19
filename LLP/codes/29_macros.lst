@@ -1,0 +1,25 @@
+     1                                  %macro abc 3
+     2                                          mov ecx,%1 
+     3                                          mov esi,%2 
+     4                                          mov edj,%3	;;edI check for erro and edj check for error
+     5                                  	rep movsb
+     6                                          mov %3,eax
+     7                                  %endmacro
+     8                                  
+     9                                  
+    10                                  section .data
+    11 00000000 4164646974696F6E20-     	msg db "Addition is %d",10,0
+    11 00000009 69732025640A00     
+    12                                  	
+    13                                  section .text
+    14                                  	global main
+    15                                  	extern printf
+    16                                  
+    17                                  main:
+    18                                  
+    19 00000000 50                      	push eax
+    20 00000001 68[00000000]            	push msg
+    21 00000006 E8(00000000)            	call printf
+    22 0000000B 83C408                  	add esp,8
+    23                                  
+    24 0000000E C3                      	ret

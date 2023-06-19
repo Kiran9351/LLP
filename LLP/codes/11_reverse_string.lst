@@ -1,0 +1,47 @@
+     1                                  section .data
+     2 00000000 746869732069732061-     	msg db "this is a string",0
+     2 00000009 20737472696E6700   
+     3                                  	len equ $-msg
+     4                                  
+     5                                  section .bss
+     6 00000000 <res 00000011>          	msg2 resb len
+     7                                  	
+     8                                  section .text
+     9                                  	globalmain
+     9          ******************       warning: label alone on a line without a colon might be in error [-w+orphan-labels]
+    10                                  	extern printf,puts
+    11                                  
+    12                                  main:
+    13 00000000 BB[00000000]            	mov ebx,msg
+    14 00000005 BA[00000000]            	mov edx,msg2
+    15 0000000A 83C311                  	add ebx,len
+    16 0000000D 4B                      	dec ebx
+    17 0000000E 4B                      	dec ebx
+    18 0000000F 31C9                    	xor ecx,ecx
+    19 00000011 41                      	inc ecx
+    20 00000012 41                       	inc ecx
+    21                                  
+    22                                  while:
+    23 00000013 8A03                    	mov al,byte[ebx]
+    24 00000015 8802                    	mov byte[edx],al
+    25                                  
+    26 00000017 83F911                  	cmp ecx,len
+    27 0000001A 7D05                    	jnl endof
+    28 0000001C 41                      	inc ecx
+    29                                  	
+    30 0000001D 4B                      	dec ebx
+    31 0000001E 42                      	inc edx
+    32                                  	
+    33 0000001F EBF2                    	jmp while
+    34                                  
+    35                                  endof:
+    36 00000021 68[00000000]            	push msg2
+    37 00000026 E8(00000000)            	call puts
+    38 0000002B 83C404                  	add esp,4
+    39                                  
+    40 0000002E 68[00000000]            	push msg 
+    41 00000033 E8(00000000)            	call puts
+    42 00000038 83C404                  	add esp,4
+    43                                  	
+    44 0000003B C3                      	ret
+    45                                  

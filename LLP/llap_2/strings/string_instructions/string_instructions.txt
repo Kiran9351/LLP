@@ -1,0 +1,46 @@
+- movsb
+	
+	esi for source string
+	edi for destination string.
+
+	al = byte[esi]
+	byte[edi] = al
+	inc esi
+	inc edi
+
+
+- rep movsb
+
+	if ecx > 0 then
+
+	for(i = ecx; i > 0; i--)
+	{
+		al = byte[esi]
+		byte[edi] = al
+		inc esi
+		inc edi
+	}	
+
+	- rep only used with string operations
+
+- std
+	set direction flag
+
+- cld 
+	clear direction flag.
+
+- Scan string - scas
+
+- scas, scasb, scasw, scasd
+
+	- compares byte in memory represented by edi with al register value.
+
+	- scan string for al value.
+
+LODS : lodsb = al lodsw = ax and lodsd = eax 
+lodsb : Loads value from memory represented by esi to al, esi++
+
+STOS : stosb = al, stosw = ax, stosd = eax 
+stosb : stores value from al to memory address represented by edi : edi++
+
+

@@ -1,0 +1,13 @@
+	section .data
+	a dd 10
+	msg db "Value of a is %d",10,0
+	section .text
+	global main
+	extern printf
+main:
+	;; printf("Value of a is %d\n",a);
+	push dword [a]
+	push msg
+	call printf
+	add  esp,8
+	ret
